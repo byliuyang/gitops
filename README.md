@@ -3,6 +3,7 @@ Manage Kubernetes cluster with Git
 
 ## Architecture
 
+[GitOps](https://www.weave.works/technologies/gitops/) uses Git as the single source of truth for declarative infrastructure and applications.
 ![GitOps](https://images.contentstack.io/v3/assets/blt300387d93dabf50e/blt15812c9fe056ba3b/5ce4448f32fd88a3767ee9a3/download)
 
 ## Contributing
