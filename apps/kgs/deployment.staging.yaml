@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: kgs
-          image: byliuyang/kgs
+          image: byliuyang/kgs-staging
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
