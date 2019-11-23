@@ -1,54 +1,54 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: ingress-nginx
+  name: ingress
   labels:
-    app.kubernetes.io/name: ingress-nginx
-    app.kubernetes.io/part-of: ingress-nginx
+    app.kubernetes.io/name: ingress
+    app.kubernetes.io/part-of: ingress
 ---
 kind: ConfigMap
 apiVersion: v1
 metadata:
   name: nginx-configuration
-  namespace: ingress-nginx
+  namespace: ingress
   labels:
-    app.kubernetes.io/name: ingress-nginx
-    app.kubernetes.io/part-of: ingress-nginx
+    app.kubernetes.io/name: ingress
+    app.kubernetes.io/part-of: ingress
 ---
 kind: ConfigMap
 apiVersion: v1
 metadata:
   name: tcp-services
-  namespace: ingress-nginx
+  namespace: ingress
   labels:
-    app.kubernetes.io/name: ingress-nginx
-    app.kubernetes.io/part-of: ingress-nginx
+    app.kubernetes.io/name: ingress
+    app.kubernetes.io/part-of: ingress
 ---
 kind: ConfigMap
 apiVersion: v1
 metadata:
   name: udp-services
-  namespace: ingress-nginx
+  namespace: ingress
   labels:
-    app.kubernetes.io/name: ingress-nginx
-    app.kubernetes.io/part-of: ingress-nginx
+    app.kubernetes.io/name: ingress
+    app.kubernetes.io/part-of: ingress
 ---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: nginx-ingress-serviceaccount
-  namespace: ingress-nginx
+  namespace: ingress
   labels:
-    app.kubernetes.io/name: ingress-nginx
-    app.kubernetes.io/part-of: ingress-nginx
+    app.kubernetes.io/name: ingress
+    app.kubernetes.io/part-of: ingress
 ---
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRole
 metadata:
   name: nginx-ingress-clusterrole
   labels:
-    app.kubernetes.io/name: ingress-nginx
-    app.kubernetes.io/part-of: ingress-nginx
+    app.kubernetes.io/name: ingress
+    app.kubernetes.io/part-of: ingress
 rules:
   - apiGroups:
       - ""
@@ -103,10 +103,10 @@ apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: Role
 metadata:
   name: nginx-ingress-role
-  namespace: ingress-nginx
+  namespace: ingress
   labels:
-    app.kubernetes.io/name: ingress-nginx
-    app.kubernetes.io/part-of: ingress-nginx
+    app.kubernetes.io/name: ingress
+    app.kubernetes.io/part-of: ingress
 rules:
   - apiGroups:
       - ""
@@ -147,10 +147,10 @@ apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: RoleBinding
 metadata:
   name: nginx-ingress-role-nisa-binding
-  namespace: ingress-nginx
+  namespace: ingress
   labels:
-    app.kubernetes.io/name: ingress-nginx
-    app.kubernetes.io/part-of: ingress-nginx
+    app.kubernetes.io/name: ingress
+    app.kubernetes.io/part-of: ingress
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
@@ -158,15 +158,15 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: nginx-ingress-serviceaccount
-    namespace: ingress-nginx
+    namespace: ingress
 ---
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRoleBinding
 metadata:
   name: nginx-ingress-clusterrole-nisa-binding
   labels:
-    app.kubernetes.io/name: ingress-nginx
-    app.kubernetes.io/part-of: ingress-nginx
+    app.kubernetes.io/name: ingress
+    app.kubernetes.io/part-of: ingress
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -174,27 +174,27 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: nginx-ingress-serviceaccount
-    namespace: ingress-nginx
+    namespace: ingress
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx-ingress-controller
-  namespace: ingress-nginx
+  namespace: ingress
   labels:
-    app.kubernetes.io/name: ingress-nginx
-    app.kubernetes.io/part-of: ingress-nginx
+    app.kubernetes.io/name: ingress
+    app.kubernetes.io/part-of: ingress
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/name: ingress-nginx
-      app.kubernetes.io/part-of: ingress-nginx
+      app.kubernetes.io/name: ingress
+      app.kubernetes.io/part-of: ingress
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: ingress-nginx
-        app.kubernetes.io/part-of: ingress-nginx
+        app.kubernetes.io/name: ingress
+        app.kubernetes.io/part-of: ingress
       annotations:
         prometheus.io/port: "10254"
         prometheus.io/scrape: "true"
@@ -212,7 +212,7 @@ spec:
             - --configmap=$(POD_NAMESPACE)/nginx-configuration
             - --tcp-services-configmap=$(POD_NAMESPACE)/tcp-services
             - --udp-services-configmap=$(POD_NAMESPACE)/udp-services
-            - --publish-service=$(POD_NAMESPACE)/ingress-nginx
+            - --publish-service=$(POD_NAMESPACE)/ingress
             - --annotations-prefix=nginx.ingress.kubernetes.io
           securityContext:
             allowPrivilegeEscalation: true
