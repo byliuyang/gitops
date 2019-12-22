@@ -56,3 +56,15 @@ spec:
         - name: data
           persistentVolumeClaim:
             claimName: postgres
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: db
+  name: postgres
+spec:
+  selector:
+    app: postgres
+  ports:
+    - name: postgres
+      port: 5432
