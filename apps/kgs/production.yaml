@@ -85,31 +85,6 @@ spec:
               value: kgs-1
             - name: SERVICE_EMAIL
               value: kgs@short-d.com
-        - name: db
-          image: postgres:12
-          imagePullPolicy: IfNotPresent
-          ports:
-            - containerPort: 5432
-          volumeMounts:
-            - mountPath: /var/lib/postgresql/data
-              name: kgs-1-db-data
-
-          env:
-            - name: POSTGRES_USER
-              valueFrom:
-                secretKeyRef:
-                  name: kgs-1-db
-                  key: user
-            - name: POSTGRES_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: kgs-1-db
-                  key: password
-            - name: POSTGRES_DB
-              valueFrom:
-                secretKeyRef:
-                  name: kgs-1-db
-                  key: name
       volumes:
         - name: certs
           secret:
@@ -119,9 +94,6 @@ spec:
                 path: tls.crt
               - key: tls.key
                 path: tls.key
-        - name: kgs-1-db-data
-          persistentVolumeClaim:
-            claimName: kgs-1-db-data
       restartPolicy: Always
 ---
 apiVersion: v1
