@@ -11,9 +11,9 @@ certbot-auto certonly \
 kubectl delete secret tls short-d.com-tls -n staging
 kubectl create secret tls short-d.com-tls \
   --key /etc/letsencrypt/live/short-d.com/privkey.pem \
-  --cert /etc/letsencrypt/live/short-d.com/fullchain.pem -n staging -o yaml
+  --cert /etc/letsencrypt/live/short-d.com/fullchain.pem -n staging
 
 kubectl delete secret tls short-d.com-tls -n production
 kubectl create secret tls short-d.com-tls \
   --key /etc/letsencrypt/live/short-d.com/privkey.pem \
-  --cert /etc/letsencrypt/live/short-d.com/fullchain.pem -n production -o yaml
+  --cert /etc/letsencrypt/live/short-d.com/fullchain.pem -n production
