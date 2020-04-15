@@ -125,6 +125,10 @@ metadata:
   name: traefik-admin-ui
   namespace: ingress
 spec:
+  tls:
+    - hosts:
+        - ingress.short-d.com
+      secretName: short-d.com-tls
   rules:
     - host: ingress.short-d.com
       http:
