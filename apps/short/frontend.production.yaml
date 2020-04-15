@@ -33,6 +33,8 @@ kind: Service
 metadata:
   namespace: production
   name: short-frontend
+  annotations:
+    kubernetes.io/ingress.class: traefik
 spec:
   selector:
     app: short
@@ -45,6 +47,11 @@ kind: Ingress
 metadata:
   namespace: production
   name: short-frontend
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    traefik.ingress.kubernetes.io/frontend-entry-points: http,https
+    traefik.ingress.kubernetes.io/redirect-entry-point: https
+    traefik.ingress.kubernetes.io/redirect-permanent: "true"
 spec:
   tls:
     - hosts:
