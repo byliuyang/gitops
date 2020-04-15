@@ -103,7 +103,7 @@ spec:
     app: traefik-ingress
   ports:
     - protocol: TCP
-      port: 80
+      port: 443
       name: web
     - protocol: TCP
       port: 8080
