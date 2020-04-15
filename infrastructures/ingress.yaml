@@ -118,6 +118,8 @@ spec:
     - name: web
       port: 80
       targetPort: 8080
+  externalIPs:
+    - 192.241.194.78
 ---
 apiVersion: extensions/v1beta1
 kind: Ingress
