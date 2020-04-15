@@ -73,4 +73,5 @@ spec:
   externalTrafficPolicy: Local
   type: LoadBalancer
   externalIPs:
+    - 127.0.0.1
     - 192.241.194.78
