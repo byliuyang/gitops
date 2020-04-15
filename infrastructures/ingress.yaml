@@ -62,7 +62,7 @@ spec:
   template:
     metadata:
       labels:
-        app: traefik-ingres
+        app: traefik-ingress
         name: traefik-ingress
     spec:
       serviceAccountName: traefik-ingress-controller
