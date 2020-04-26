@@ -66,7 +66,10 @@ spec:
               name: data
             - name: certs
               mountPath: /var/lib/postgresql/certs
-              readOnly: true
+      securityContext:
+        runAsUser: 999
+        runAsGroup: 999
+        fsGroup: 999
       volumes:
         - name: data
           persistentVolumeClaim:
@@ -74,6 +77,7 @@ spec:
         - name: certs
           secret:
             secretName: short-d.com-tls
+            defaultMode: 0600
             items:
               - key: tls.crt
                 path: server.crt
