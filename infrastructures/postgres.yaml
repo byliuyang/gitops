@@ -39,9 +39,12 @@ spec:
           ports:
             - containerPort: 5432
           args:
-            - -c ssl=on
-            - -c ssl_cert_file=/var/lib/postgresql/certs/server.crt
-            - -c ssl_key_file=/var/lib/postgresql/certs/server.key
+            - -c
+            - ssl=on
+            - -c
+            - ssl_cert_file=/var/lib/postgresql/certs/server.crt
+            - -c
+            - ssl_key_file=/var/lib/postgresql/certs/server.key
           env:
             - name: POSTGRES_USER
               valueFrom:
