@@ -204,5 +204,5 @@ spec:
       http:
         paths:
           - backend:
-              serviceName: short-backend-grpc
+              serviceName: short-backend
               servicePort: grpc
