@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: story
-          image: shortorg/story
+          image: shortorg/story-testing
           imagePullPolicy: Always
       restartPolicy: Always
   selector:
