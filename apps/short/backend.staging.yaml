@@ -220,7 +220,7 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: traefik
     traefik.ingress.kubernetes.io/frontend-entry-points: http
-    ingress.kubernetes.io/protocol: h2c
+    ingress.kubernetes.io/protocol: https
 spec:
   tls:
     - hosts:
