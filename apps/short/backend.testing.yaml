@@ -29,6 +29,10 @@ spec:
             - containerPort: 80
             - containerPort: 8080
             - containerPort: 8081
+          volumeMounts:
+            - name: certs
+              mountPath: "/etc/certs"
+              readOnly: true
           args:
             - ./scripts/wait-for-it
             - -s
@@ -146,6 +150,15 @@ spec:
               value: /etc/certs/tls.key
             - name: GRPC_API_PORT
               value: "8081"
+      volumes:
+        - name: certs
+          secret:
+            secretName: short-d.com-tls
+            items:
+              - key: tls.crt
+                path: tls.crt
+              - key: tls.key
+                path: tls.key
       restartPolicy: Always
 ---
 apiVersion: v1
