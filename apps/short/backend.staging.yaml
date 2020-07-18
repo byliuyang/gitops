@@ -138,6 +138,14 @@ spec:
                 secretKeyRef:
                   name: short
                   key: google-api-key
+            - name: ENABLE_ENCRYPTION
+              value: "true"
+            - name: CERT_FILE_PATH
+              value: /etc/certs/tls.crt
+            - name: KEY_FILE_PATH
+              value: /etc/certs/tls.key
+            - name: GRPC_API_PORT
+              value: "8081"
       restartPolicy: Always
 ---
 apiVersion: v1
