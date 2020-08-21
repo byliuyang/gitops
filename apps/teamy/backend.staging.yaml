@@ -22,7 +22,7 @@ spec:
         tier: backend
     spec:
       containers:
-        - name: teamy-backend-staging
+        - name: teamy-backend
           image: byliuyang/teamy-backend-staging
           imagePullPolicy: Always
           ports:
