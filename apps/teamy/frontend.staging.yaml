@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: staging
+  name: teamy
+  labels:
+    app: teamy
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  revisionHistoryLimit: 3
+  template:
+    metadata:
+      name: teamy
+      labels:
+        app: teamy
+    spec:
+      containers:
+        - name: story
+          image: shortorg/teamy-web-staging
+          imagePullPolicy: Always
+      restartPolicy: Always
+  selector:
+    matchLabels:
+      app: teamy
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: staging
+  name: teamy
+spec:
+  selector:
+    app: teamy
+  ports:
+    - port: 80
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  namespace: staging
+  name: teamy
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    traefik.ingress.kubernetes.io/frontend-entry-points: http,https
+    traefik.ingress.kubernetes.io/redirect-entry-point: https
+    traefik.ingress.kubernetes.io/redirect-permanent: "true"
+spec:
+  tls:
+    - hosts:
+        - teamy-staging.short-d.com
+      secretName: short-d.com-tls
+  rules:
+    - host: teamy-staging.short-d.com
+      http:
+        paths:
+          - backend:
+              serviceName: teamy
+              servicePort: 80
