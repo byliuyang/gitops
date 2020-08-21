@@ -60,10 +60,10 @@ metadata:
 spec:
   tls:
     - hosts:
-        - gql-staging.short-d.com
+        - gql-teamy-staging.short-d.com
       secretName: short-d.com-tls
   rules:
-    - host: gql-staging.short-d.com
+    - host: gql-teamy-staging.short-d.com
       http:
         paths:
           - backend:
