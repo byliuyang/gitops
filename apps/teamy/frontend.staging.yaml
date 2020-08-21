@@ -4,7 +4,8 @@ metadata:
   namespace: staging
   name: teamy-web
   labels:
-    app: teamy-web
+    app: teamy
+    tier: frontend
 spec:
   replicas: 1
   strategy:
@@ -14,7 +15,8 @@ spec:
     metadata:
       name: teamy-web
       labels:
-        app: teamy-web
+        app: teamy
+        tier: frontend
     spec:
       containers:
         - name: teamy-web
@@ -23,7 +25,8 @@ spec:
       restartPolicy: Always
   selector:
     matchLabels:
-      app: teamy-web
+      app: teamy
+      tier: frontend
 ---
 apiVersion: v1
 kind: Service
@@ -32,7 +35,8 @@ metadata:
   name: teamy-web
 spec:
   selector:
-    app: teamy-web
+    app: teamy
+    tier: frontend
   ports:
     - port: 80
 ---
