@@ -2,9 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   namespace: staging
-  name: teamy
+  name: teamy-web
   labels:
-    app: teamy
+    app: teamy-web
 spec:
   replicas: 1
   strategy:
@@ -12,27 +12,27 @@ spec:
   revisionHistoryLimit: 3
   template:
     metadata:
-      name: teamy
+      name: teamy-web
       labels:
-        app: teamy
+        app: teamy-web
     spec:
       containers:
-        - name: teamy
+        - name: teamy-web
           image: shortorg/teamy-web-staging
           imagePullPolicy: Always
       restartPolicy: Always
   selector:
     matchLabels:
-      app: teamy
+      app: teamy-web
 ---
 apiVersion: v1
 kind: Service
 metadata:
   namespace: staging
-  name: teamy
+  name: teamy-web
 spec:
   selector:
-    app: teamy
+    app: teamy-web
   ports:
     - port: 80
 ---
@@ -40,7 +40,7 @@ apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   namespace: staging
-  name: teamy
+  name: teamy-web
   annotations:
     kubernetes.io/ingress.class: traefik
     traefik.ingress.kubernetes.io/frontend-entry-points: http,https
@@ -56,5 +56,5 @@ spec:
       http:
         paths:
           - backend:
-              serviceName: teamy
+              serviceName: teamy-web
               servicePort: 80
