@@ -17,7 +17,7 @@ spec:
         app: teamy
     spec:
       containers:
-        - name: story
+        - name: teamy
           image: shortorg/teamy-web-staging
           imagePullPolicy: Always
       restartPolicy: Always
