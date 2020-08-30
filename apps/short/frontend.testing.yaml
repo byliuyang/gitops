@@ -25,7 +25,7 @@ spec:
           env:
             - name: SHORT_RPC_API_HOST
               value: grpc-testing.short-d.com
-            - name: SHORT_RPC_API_HOST
+            - name: SHORT_RPC_API_PORT
               value: 443
             - name: HTTP_PORT
               value: 80
