@@ -22,13 +22,15 @@ spec:
         - name: short-frontend
           image: byliuyang/short-frontend
           imagePullPolicy: Always
+          args:
+            - ./app
           env:
             - name: SHORT_RPC_API_HOST
               value: grpc.short-d.com
             - name: SHORT_RPC_API_PORT
-              value: 443
+              value: "443"
             - name: HTTP_PORT
-              value: 80
+              value: "80"
       restartPolicy: Always
   selector:
     matchLabels:
