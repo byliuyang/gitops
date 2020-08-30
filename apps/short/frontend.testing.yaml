@@ -22,8 +22,6 @@ spec:
         - name: short-frontend
           image: shortorg/short-frontend-testing
           imagePullPolicy: Always
-          args:
-            - ./app
           env:
             - name: SHORT_RPC_API_HOST
               value: grpc-testing.short-d.com
